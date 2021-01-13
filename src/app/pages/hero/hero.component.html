@@ -52,11 +52,11 @@
         <div class="form-group mb-5">
           <label>Status</label>
           <br>
-          <button type="button" class="btn btn-outline-success w-50">
+          <button *ngIf="hero.isAlive" (click)="hero.isAlive = false" type="button" class="btn btn-outline-success w-50">
             <i class="fas fa-smile-wink"></i>
             Alive
           </button>
-          <button type="button" class="btn btn-outline-danger w-50">
+          <button *ngIf="!hero.isAlive" (click)="hero.isAlive = true" type="button" class="btn btn-outline-danger w-50">
             <i class="fas fa-dizzy"></i>
             Dead
           </button>
