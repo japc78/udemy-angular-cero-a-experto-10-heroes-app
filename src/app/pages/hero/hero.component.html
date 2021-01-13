@@ -16,14 +16,16 @@
 
   <div class="row animated fadeIn faster">
     <div class="col">
-      <form>
+      <form (ngSubmit)="safeForm(f)" #f="ngForm">
         <div class="form-group">
           <label>Firebase Id</label>
           <input
             type="text"
             class="form-control"
             placeholder="Firebase ID"
-            disabled="disable">
+            disabled="disable"
+            name="id"
+            [(ngModel)]="hero.id">
             <small class="form-text text-muted">auto field</small>
         </div>
         <div class="form-group">
@@ -31,7 +33,11 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Hero name">
+            placeholder="Hero name"
+            required
+            name="name"
+            [(ngModel)]="hero.name"
+            >
         </div>
         <div class="form-group">
           <label>Hero power</label>
@@ -39,21 +45,16 @@
             type="text"
             class="form-control"
             placeholder="Hero power"
-            required>
-        </div>
-        <div class="form-group">
-          <label>Hero power</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Hero power">
+            required
+            name="power"
+            [(ngModel)]="hero.power">
         </div>
         <div class="form-group mb-5">
           <label>Status</label>
           <br>
           <button type="button" class="btn btn-outline-success w-50">
             <i class="fas fa-smile-wink"></i>
-            Live
+            Alive
           </button>
           <button type="button" class="btn btn-outline-danger w-50">
             <i class="fas fa-dizzy"></i>
