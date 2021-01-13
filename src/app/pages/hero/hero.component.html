@@ -1,1 +1,73 @@
-<p>hero works!</p>
+<div>
+  <h1>Hero: <small>hero name</small></h1>
+  <hr>
+
+  <div class="row text-right">
+    <div class="col">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        routerLink="/heroes">
+        <i class="fas fa-arrow-left"></i>
+        Back
+      </button>
+    </div>
+  </div>
+
+  <div class="row animated fadeIn faster">
+    <div class="col">
+      <form>
+        <div class="form-group">
+          <label>Firebase Id</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Firebase ID"
+            disabled="disable">
+            <small class="form-text text-muted">auto field</small>
+        </div>
+        <div class="form-group">
+          <label>Hero name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Hero name">
+        </div>
+        <div class="form-group">
+          <label>Hero power</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Hero power"
+            required>
+        </div>
+        <div class="form-group">
+          <label>Hero power</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Hero power">
+        </div>
+        <div class="form-group mb-5">
+          <label>Status</label>
+          <br>
+          <button type="button" class="btn btn-outline-success w-50">
+            <i class="fas fa-smile-wink"></i>
+            Live
+          </button>
+          <button type="button" class="btn btn-outline-danger w-50">
+            <i class="fas fa-dizzy"></i>
+            Dead
+          </button>
+        </div>
+        <hr>
+        <div class="form-group text-center mt-5">
+          <button type="submit" class="btn btn-outline-primary w-25">
+            <i class="fas fa-save"></i>
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
