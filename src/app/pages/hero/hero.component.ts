@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
 import { HeroModel } from '../../models/hero.model';
 import { HeroesService } from '../../services/heroes.service';
+import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { HeroesService } from '../../services/heroes.service';
 export class HeroComponent implements OnInit {
 
   hero: HeroModel;
+
 
   constructor( private heroesService: HeroesService) {
     this.hero = new HeroModel();
@@ -27,15 +30,30 @@ export class HeroComponent implements OnInit {
       return;
     }
 
+    Swal.fire({
+      title: 'Wait',
+      text: 'Save data',
+      icon: 'info',
+      allowOutsideClick: false
+    });
+
+    Swal.showLoading();
+
+    let request: Observable<HeroModel>;
+
     if (this.hero.id) {
-      this.heroesService.updateHero(this.hero)
-        .subscribe();
+      request = this.heroesService.updateHero(this.hero);
     } else {
-      this.heroesService.createHero(this.hero)
-        .subscribe( resp => {
-          // console.log(resp);
-        });
+      request = this.heroesService.createHero(this.hero);
     }
+
+    request.subscribe(resp => {
+      Swal.fire({
+        title: this.hero.name,
+        text: 'Correctly updated',
+        icon: 'success'
+      });
+    });
 
     // console.log(form);
     // console.log(this.hero);
