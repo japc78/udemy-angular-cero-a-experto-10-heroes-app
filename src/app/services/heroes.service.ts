@@ -23,4 +23,18 @@ export class HeroesService {
         })
       );
   }
+
+  updateHero(hero: HeroModel): Observable<HeroModel> {
+    // Para borrar el id y no lo cree como atributo de nuevo.
+    const heroTemp = {...hero};
+    delete heroTemp.id;
+
+    return this.http.put(`${this.URL}/heroes/${hero.id}.json`, heroTemp)
+      .pipe(
+        map( (resp: any) => {
+          hero.id = resp.name;
+          return hero;
+        })
+      );
+  }
 }

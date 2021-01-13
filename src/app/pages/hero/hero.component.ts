@@ -27,12 +27,18 @@ export class HeroComponent implements OnInit {
       return;
     }
 
-    this.heroesService.createHero(this.hero)
-      .subscribe( resp => {
-        console.log(resp);
-      });
+    if (this.hero.id) {
+      this.heroesService.updateHero(this.hero)
+        .subscribe();
+    } else {
+      this.heroesService.createHero(this.hero)
+        .subscribe( resp => {
+          // console.log(resp);
+        });
+    }
 
-    console.log(form);
-    console.log(this.hero);
+    // console.log(form);
+    // console.log(this.hero);
   }
+
 }
