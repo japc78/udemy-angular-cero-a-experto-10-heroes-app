@@ -1,1 +1,53 @@
-<p>heroes works!</p>
+<div>
+    <h1>Heroes List</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col text-right mb-3">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              routerLink="/hero/new">
+                <i class="fas fa-plus"></i>
+                Agregar</button>
+        </div>
+
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Power</th>
+                <th scope="col">Is live</th>
+                <th scope="col">Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="alert alert-info text-center">
+  <h4>Loading...</h4>
+  <p>
+    <i class="fas fa-sync-alt fa-spin fa-2x"></i>
+  </p>
+  <p>
+    Wait please
+  </p>
+</div>
+
+<div class="alert alert-warning text-center">
+  <h4>There are no records...</h4>
+  <p>
+    <i class="fas fa-exclamation fa-2x"></i>
+  </p>
+</div>
