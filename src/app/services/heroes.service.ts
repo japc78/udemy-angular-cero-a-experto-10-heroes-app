@@ -37,4 +37,34 @@ export class HeroesService {
         })
       );
   }
+
+  getHeroes() {
+    return this.http.get(`${this.URL}/heroes.json`)
+      .pipe(
+        // map( (resp: any) => {
+        //   return this.parseDataToArrayHeroes(resp);
+        // })
+
+        // Version reducida.
+        map(this.parseDataToArrayHeroes)
+      );
+      // pipe podemos utilizar el map para modific`)
+  }
+
+  private parseDataToArrayHeroes(firebaseData: object): HeroModel[] {
+
+    const heroes: HeroModel[] = [];
+    // console.log(firebaseData);
+
+    if (firebaseData === null) { return []; }
+
+    Object.keys( firebaseData ).forEach(key => {
+      const hero: HeroModel = firebaseData[key];
+      hero.id = key;
+
+      heroes.push( hero );
+    });
+
+    return heroes;
+  }
 }

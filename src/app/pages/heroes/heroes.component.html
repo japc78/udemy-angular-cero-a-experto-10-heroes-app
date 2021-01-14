@@ -22,11 +22,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let hero of heroes; let idx = index">
+                <th scope="row">{{ idx + 1 }}</th>
+                <td>{{hero.name}}</td>
+                <td>{{hero.power}}</td>
+                <td>
+                  <span *ngIf="hero.isAlive" class="badge badge-success">Alive</span>
+                  <span *ngIf="!hero.isAlive" class="badge badge-danger">Dead</span>
+                </td>
               </tr>
             </tbody>
         </table>
