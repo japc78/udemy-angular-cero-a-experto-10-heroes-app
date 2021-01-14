@@ -5,7 +5,6 @@ import { HeroesService } from '../../services/heroes.service';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { log } from 'console';
 
 
 @Component({
