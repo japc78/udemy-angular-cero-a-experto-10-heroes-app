@@ -12,13 +12,14 @@
                 Add</button>
         </div>
 
-        <table class="table">
+        <table *ngIf="!loading && heroes.length > 0" class="table animated fadeIn">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Power</th>
                 <th scope="col">Alive</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -30,13 +31,27 @@
                   <span *ngIf="hero.isAlive" class="badge badge-success">Alive</span>
                   <span *ngIf="!hero.isAlive" class="badge badge-danger">Dead</span>
                 </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm mr-2"
+                    [routerLink]="['/hero/', hero.id]">
+                    <i class="fas fa-pen"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm"
+                    (click)="deleteHero(hero, idx)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
               </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<div class="alert alert-info text-center">
+<div *ngIf="loading" class="alert alert-info text-center animated fadeIn">
   <h4>Loading...</h4>
   <p>
     <i class="fas fa-sync-alt fa-spin fa-2x"></i>
@@ -46,7 +61,7 @@
   </p>
 </div>
 
-<div class="alert alert-warning text-center">
+<div *ngIf="!loading && heroes.length == 0" class="alert alert-warning text-center">
   <h4>There are no records...</h4>
   <p>
     <i class="fas fa-exclamation fa-2x"></i>

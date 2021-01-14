@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeroModel } from '../models/hero.model';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -38,7 +38,15 @@ export class HeroesService {
       );
   }
 
-  getHeroes() {
+  getHero(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/heroes/${id}.json`);
+  }
+
+  deleteHero(id: string) {
+    return this.http.delete(`${this.URL}/heroes/${id}.json`);
+  }
+
+  getHeroes(): Observable<HeroModel[]> {
     return this.http.get(`${this.URL}/heroes.json`)
       .pipe(
         // map( (resp: any) => {
@@ -46,7 +54,8 @@ export class HeroesService {
         // })
 
         // Version reducida.
-        map(this.parseDataToArrayHeroes)
+        map(this.parseDataToArrayHeroes),
+        delay(1000)
       );
       // pipe podemos utilizar el map para modific`)
   }

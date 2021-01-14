@@ -4,6 +4,8 @@ import { HeroModel } from '../../models/hero.model';
 import { HeroesService } from '../../services/heroes.service';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { log } from 'console';
 
 
 @Component({
@@ -16,11 +18,22 @@ export class HeroComponent implements OnInit {
   hero: HeroModel;
 
 
-  constructor( private heroesService: HeroesService) {
+  constructor(
+    private heroesService: HeroesService,
+    private route: ActivatedRoute) {
     this.hero = new HeroModel();
    }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id !== 'new') {
+      this.heroesService.getHero(id)
+        .subscribe( (hero: HeroModel) => {
+          hero.id = id;
+          this.hero = hero;
+        });
+    }
   }
 
   safeForm(form: NgForm): void {
